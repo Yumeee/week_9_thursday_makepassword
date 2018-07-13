@@ -1,8 +1,9 @@
 require 'HTTParty'
+require 'pry'
 
-res = HTTParty.get("https://makemeapassword.org/api/v1/pasphrase/json?pc=10&wc=8&s=RandomForever")
-
+res = HTTParty.get("https://makemeapassword.org/api/v1/alphanumeric/json?c=10&l=6")
 password_response = JSON.parse(res.body)
+binding.pry
 
 passwords = []
 password_response['pws'].each do |password|
@@ -10,3 +11,5 @@ password_response['pws'].each do |password|
     passwords << password
   end
 end
+
+puts passwords
